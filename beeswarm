@@ -609,12 +609,15 @@ function startTweenFastFarm()
                 v151:Play()
                 v151.Completed:Wait()
 
-            elseif shared.farmStars and (v143 and vu41(v143.Position, v140.Position)) then
-                local v152 = v143.Position
-                local v153 = {
-                    CFrame = CFrame.new(v152.X, v136.Character.HumanoidRootPart.Position.Y, v152.Z)
-                }
-                local v154 = v137:Create(v136.Character.HumanoidRootPart, v138, v153)
+         elseif shared.farmStars and (v143 and vu41(v143.Position, v140.Position)) then
+    local v152 = v143.Position
+    local v153 = {
+        CFrame = CFrame.new(v152.X, v136.Character.HumanoidRootPart.Position.Y, v152.Z)
+    }
+    local v154 = v137:Create(v136.Character.HumanoidRootPart, v138, v153)
+    v154:Play()
+    v154.Completed:Wait()
+end
                 v154:Play()
                 v154.Completed:Wait()
             end
