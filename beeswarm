@@ -597,19 +597,25 @@ function startTweenFastFarm()
                     CFrame = CFrame.new(v146.X, v136.Character.HumanoidRootPart.Position.Y, v146.Z)
                 }
                 local v148 = v137:Create(v136.Character.HumanoidRootPart, v138, v147)
-                v148:Play()
-                v148.Completed:Wait()
+            if shared.farmFlames and (v141 and vu41(v141.Position, v140.Position)) then
+    local v146 = v141.Position
+    local v147 = {
+        CFrame = CFrame.new(v146.X, v136.Character.HumanoidRootPart.Position.Y, v146.Z)
+    }
+    local v148 = v137:Create(v136.Character.HumanoidRootPart, v138, v147)
+    v148:Play()
+    v148.Completed:Wait()
 
-            elseif shared.farmBubbles and (v142 and vu41(v142.Position, v140.Position)) then
-                local v149 = v142.Position
-                local v150 = {
-                    CFrame = CFrame.new(v149.X, v136.Character.HumanoidRootPart.Position.Y, v149.Z)
-                }
-                local v151 = v137:Create(v136.Character.HumanoidRootPart, v138, v150)
-                v151:Play()
-                v151.Completed:Wait()
+elseif shared.farmBubbles and (v142 and vu41(v142.Position, v140.Position)) then
+    local v149 = v142.Position
+    local v150 = {
+        CFrame = CFrame.new(v149.X, v136.Character.HumanoidRootPart.Position.Y, v149.Z)
+    }
+    local v151 = v137:Create(v136.Character.HumanoidRootPart, v138, v150)
+    v151:Play()
+    v151.Completed:Wait()
 
-       elseif shared.farmStars and (v143 and vu41(v143.Position, v140.Position)) then
+elseif shared.farmStars and (v143 and vu41(v143.Position, v140.Position)) then
     local v152 = v143.Position
     local v153 = {
         CFrame = CFrame.new(v152.X, v136.Character.HumanoidRootPart.Position.Y, v152.Z)
@@ -617,86 +623,59 @@ function startTweenFastFarm()
     local v154 = v137:Create(v136.Character.HumanoidRootPart, v138, v153)
     v154:Play()
     v154.Completed:Wait()
-end
-                v154:Play()
-                v154.Completed:Wait()
-            end
 
-            -- Optional small delay to avoid tight loop hammering
-            task.wait(0.05)
+elseif shared.farmBalloons and (v144 and v145) then
+    local v155, v156, v157 = pairs(workspace.Collectibles:GetChildren())
+    local v158 = 10
+    local v159 = {}
+    while true do
+        local v160
+        v157, v160 = v155(v156, v157)
+        if v157 == nil then break end
+        if v160.Transparency == 0 and (v160.Position - v145).Magnitude <= v158 then
+            table.insert(v159, v160)
         end
-    end)
-end
-                local v153 = {
-                    CFrame = CFrame.new(v152.X, v136.Character.HumanoidRootPart.Position.Y, v152.Z)
-                }
-                local v154 = v137:Create(v136.Character.HumanoidRootPart, v138, v153)
-                v154:Play()
-                v154.Completed:Wait()
-            end
+    end
+    if #v159 <= 0 then
+        local v161 = math.random() * math.pi * 2
+        local v162 = math.random() * v158
+        local v163 = math.cos(v161) * v162
+        local v164 = math.sin(v161) * v162
+        local v165 = Vector3.new(v145.X + v163, v136.Character.HumanoidRootPart.Position.Y, v145.Z + v164)
+        local v166 = { CFrame = CFrame.new(v165) }
+        local v167 = v137:Create(v136.Character.HumanoidRootPart, v138, v166)
+        v167:Play()
+        v167.Completed:Wait()
+    else
+        local v168, v169, v170 = ipairs(v159)  -- fixed: removed extra ')'
+        while true do
+            local v171
+            v170, v171 = v168(v169, v170)
+            if v170 == nil then break end
+            local v172 = v171.Position
+            local v173 = {
+                CFrame = CFrame.new(v172.X, v136.Character.HumanoidRootPart.Position.Y, v172.Z)
+            }
+            local v174 = v137:Create(v136.Character.HumanoidRootPart, v138, v173)
+            v174:Play()
+            v174.Completed:Wait()
         end
-    end)
+    end
+
+else
+    local v175, v176, v177 = pairs(workspace.Collectibles:GetChildren())
+    while true do
+        local v178
+        v177, v178 = v175(v176, v177)
+        if v177 == nil then break end
+        local v179 = (v178.Position - v139).Magnitude
+        if v178.Transparency == 0 and v179 <= 40 then
+            -- continue logic...
+        end
+    end
 end
-                local v152 = v143.Position
-                local v153 = {
-                    CFrame = CFrame.new(v152.X, v136.Character.HumanoidRootPart.Position.Y, v152.Z)
-                }
-                local v154 = v137:Create(v136.Character.HumanoidRootPart, v138, v153)
-                v154:Play()
-                v154.Completed:Wait()
-            elseif shared.farmBalloons and (v144 and v145) then
-                local v155, v156, v157 = pairs(workspace.Collectibles:GetChildren())
-                local v158 = 10
-                local v159 = {}
-                while true do
-                    local v160
-                    v157, v160 = v155(v156, v157)
-                    if v157 == nil then
-                        break
-                    end
-                    if v160.Transparency == 0 and (v160.Position - v145).Magnitude <= v158 then
-                        table.insert(v159, v160)
-                    end
-                end
-                if # v159 <= 0 then
-                    local v161 = math.random() * math.pi * 2
-                    local v162 = math.random() * v158
-                    local v163 = math.cos(v161) * v162
-                    local v164 = math.sin(v161) * v162
-                    local v165 = Vector3.new(v145.X + v163, v136.Character.HumanoidRootPart.Position.Y, v145.Z + v164)
-                    local v166 = {
-                        CFrame = CFrame.new(v165)
-                    }
-                    local v167 = v137:Create(v136.Character.HumanoidRootPart, v138, v166)
-                    v167:Play()
-                    v167.Completed:Wait()
-                else
-                    local v168, v169, v170 = ipairs(v159))
-                    while true do
-                        local v171
-                        v170, v171 = v168(v169, v170)
-                        if v170 == nil then
-                            break
-                        end
-                        local v172 = v171.Position
-                        local v173 = {
-                            CFrame = CFrame.new(v172.X, v136.Character.HumanoidRootPart.Position.Y, v172.Z)
-                        }
-                        local v174 = v137:Create(v136.Character.HumanoidRootPart, v138, v173)
-                        v174:Play()
-                        v174.Completed:Wait()
-                    end
-                end
-            else
-                local v175, v176, v177 = pairs(workspace.Collectibles:GetChildren())
-                while true do
-                    local v178
-                    v177, v178 = v175(v176, v177)
-                    if v177 == nil then
-                        break
-                    end
-                    local v179 = (v178.Position - v139).Magnitude
-                    if v178.Transparency == 0 and v179 <= 40 then
+
+task.wait(0.05)
                         local v180 = v178.Position
                         if (v180 - v140.Position).Magnitude <= 40 then
                             local v181 = v180.X
