@@ -557,26 +557,35 @@ function startTweenFastFarm()
         local function vu134()
             local v133 = vu132[vu30]
             if v133 then
+                      local function vu134()
+            local v133 = vu132[vu30]
+            if v133 then
                 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v133
             end
         end
+
         vu134()
+
         game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Died:Connect(function()
             if shared.a12 then
                 wait(5)
                 vu134()
             end
         end)
+
         local v135 = vu132
+
         while shared.a12 do
             local v136 = game.Players.LocalPlayer
             local v137 = game:GetService("TweenService")
             local v138 = TweenInfo.new(0.1)
             local v139 = v136.Character.HumanoidRootPart.Position
             local v140 = v135[vu30]
+
             if (v139 - v140.Position).Magnitude > 40 then
                 v136.Character.HumanoidRootPart.CFrame = v140
             end
+
             local v141 = vu50(v139)
             local v142 = vu59(v139)
             local v143 = vu68(v139)
@@ -590,6 +599,7 @@ function startTweenFastFarm()
                 local v148 = v137:Create(v136.Character.HumanoidRootPart, v138, v147)
                 v148:Play()
                 v148.Completed:Wait()
+
             elseif shared.farmBubbles and (v142 and vu41(v142.Position, v140.Position)) then
                 local v149 = v142.Position
                 local v150 = {
@@ -598,8 +608,22 @@ function startTweenFastFarm()
                 local v151 = v137:Create(v136.Character.HumanoidRootPart, v138, v150)
                 v151:Play()
                 v151.Completed:Wait()
+
             elseif shared.farmStars and (v143 and vu41(v143.Position, v140.Position)) then
                 local v152 = v143.Position
+                local v153 = {
+                    CFrame = CFrame.new(v152.X, v136.Character.HumanoidRootPart.Position.Y, v152.Z)
+                }
+                local v154 = v137:Create(v136.Character.HumanoidRootPart, v138, v153)
+                v154:Play()
+                v154.Completed:Wait()
+            end
+
+            -- Optional small delay to avoid tight loop hammering
+            task.wait(0.05)
+        end
+    end)
+end
                 local v153 = {
                     CFrame = CFrame.new(v152.X, v136.Character.HumanoidRootPart.Position.Y, v152.Z)
                 }
