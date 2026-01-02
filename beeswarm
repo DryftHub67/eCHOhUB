@@ -668,7 +668,7 @@ end
                     v167:Play()
                     v167.Completed:Wait()
                 else
-                    local v168, v169, v170 = ipairs(v159)
+                    local v168, v169, v170 = ipairs(v159))
                     while true do
                         local v171
                         v170, v171 = v168(v169, v170)
